@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import com.template.app.model.request.CreateMemberReq;
+import com.template.app.model.request.UpdateMemberReq;
 import com.template.app.model.response.MemberInfoRes;
 import com.template.infrastructure.model.MemberInfoModel;
 
@@ -15,4 +16,8 @@ public interface MemberInfoResMapper {
 	@Mapping(ignore = true, target = "createdAt")
 	@Mapping(ignore = true, target = "updatedAt")
 	MemberInfoModel toModel(CreateMemberReq req);
+
+	@Mapping(ignore = true, target = "createdAt")
+	@Mapping(ignore = true, target = "updatedAt")
+	MemberInfoModel toModel(UpdateMemberReq req);
 }

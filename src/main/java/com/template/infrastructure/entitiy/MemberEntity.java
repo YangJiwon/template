@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Table(name = "MEMBER")
@@ -26,9 +27,11 @@ public class MemberEntity extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberNo;
 
+	@Setter
 	@Column(name = "MEMBER_NAME")
 	private String memberName;
 
+	@Setter
 	@Column(name = "MEMBER_ETC_NAME")
 	private String memberEtcName;
 }

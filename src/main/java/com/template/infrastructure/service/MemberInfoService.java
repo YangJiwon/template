@@ -20,12 +20,6 @@ public class MemberInfoService {
 	private final MemberRepository memberRepository;
 	private final MemberInfoMapper mapper;
 
-	@Transactional
-	public void saveMember(MemberInfoModel model){
-		MemberEntity entity = mapper.toEntity(model);
-		memberRepository.save(entity);
-	}
-
 	public MemberInfoModel getMember(Integer memberNo){
 		MemberEntity entity = findById(memberNo);
 		return mapper.toInfoModel(entity);
@@ -33,5 +27,20 @@ public class MemberInfoService {
 
 	private MemberEntity findById(Integer memberNo){
 		return memberRepository.findById(memberNo).orElseThrow(() -> new BusinessErrorCodeException(ErrorCode.MEMBER_01));
+	}
+
+	@Transactional
+	public void saveMember(MemberInfoModel model){
+		MemberEntity entity = mapper.toEntity(model);
+		memberRepository.save(entity);
+	}
+
+	@Transactional
+	public void updateMember(MemberInfoModel model){
+		Integer memberNo = model.memberNo();
+		MemberEntity entity = this.findById(memberNo);
+
+		entity.setMemberName(model.memberName());
+		entity.setMemberEtcName(model.memberEtcName());
 	}
 }

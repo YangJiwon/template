@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CommonExceptionHandler {
 	@ExceptionHandler({ConstraintViolationException.class})
-	protected ResponseEntity<ApiErrorResponse> handleConstraintViolationException(ConstraintViolationException exception) {
+	public ResponseEntity<ApiErrorResponse> handleConstraintViolationException(ConstraintViolationException exception) {
 		Set<ConstraintViolation<?>> constraintViolations = exception.getConstraintViolations();
 		String errMsg = constraintViolations
 				.stream()
@@ -45,7 +45,7 @@ public class CommonExceptionHandler {
 	}
 
 	@ExceptionHandler({BusinessErrorCodeException.class})
-	protected ResponseEntity<ApiErrorResponse> handleBusinessErrorCodeException(BusinessErrorCodeException exception) {
+	public ResponseEntity<ApiErrorResponse> handleBusinessErrorCodeException(BusinessErrorCodeException exception) {
 		log.error("BusinessErrorCodeException Exception::{}::{}", exception.getErrorCode(), exception.getMessage());
 		return ApiErrorResponse.toResponse(exception.getErrorCode());
 	}

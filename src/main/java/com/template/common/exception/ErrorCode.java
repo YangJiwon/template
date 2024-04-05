@@ -2,11 +2,11 @@ package com.template.common.exception;
 
 import org.springframework.http.HttpStatus;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum ErrorCode {
 	MEMBER_01(HttpStatus.BAD_REQUEST, "멤버 정보가 없습니다."),
 	ERROR2(HttpStatus.BAD_REQUEST, "error_2");

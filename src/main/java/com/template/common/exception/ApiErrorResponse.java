@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.template.app.constants.DateTimePatternConstant;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +15,7 @@ import lombok.Getter;
 @Getter
 @Builder(access = AccessLevel.PRIVATE)
 public class ApiErrorResponse {
-	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DateTimePatternConstant.YYYY_MM_DD_HH_MM_SS);
 
 	private final String timestamp = LocalDateTime.now().format(FORMATTER);
 	private final int status;

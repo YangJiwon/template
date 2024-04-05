@@ -56,10 +56,6 @@ test {
 def querydslSrcDir = 'src/main/generated'
 
 tasks.withType(JavaCompile).configureEach {
-    options.getGeneratedSourceOutputDirectory().set(file(querydslSrcDir))
-}
-
-tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.addAll(
             List.of(
                     "-Amapstruct.suppressGeneratorTimestamp=true",
@@ -70,9 +66,13 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 sourceSets {
-    main.java.srcDirs += [ querydslSrcDir ]
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
 }
 
-clean.doLast {
-    file( querydslSrcDir ).deleteDir()
+clean {
+    delete file(querydslSrcDir)
 }

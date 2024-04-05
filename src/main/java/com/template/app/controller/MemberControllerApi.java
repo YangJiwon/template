@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Validated
@@ -37,6 +38,19 @@ public interface MemberControllerApi {
 	@GetMapping("/member")
 	MemberInfoRes getMember(@Parameter(description = "멤버 넘버", example = "1", name = "memberNo")
 							@RequestParam @Valid @NotNull @Min(1) Integer memberNo);
+
+	@Operation(
+			summary = "이름으로 멤버 조회",
+			description = " 이름으로 멤버를 조회하는 API",
+			responses = {
+					@ApiResponse(description = "Success",
+							responseCode = "200",
+							content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MemberInfoRes.class)))
+			}
+	)
+	@GetMapping("/member/name")
+	MemberInfoRes getMemberByName(@Parameter(description = "멤버 이름", example = "테스트", name = "memberName")
+								  @RequestParam @Valid @NotBlank String memberName);
 
 	@Operation(
 			summary = "멤버 등록",

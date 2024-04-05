@@ -20,6 +20,10 @@ public class MemberController implements MemberControllerApi{
 		return memberAppService.getMember(memberNo);
 	}
 
+	public MemberInfoRes getMemberByName(@RequestParam String memberName){
+		return memberAppService.getMemberByName(memberName);
+	}
+
 	public void saveMember(@RequestBody CreateMemberReq req){
 		memberAppService.saveMember(req);
 	}

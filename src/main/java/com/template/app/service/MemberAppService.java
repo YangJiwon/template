@@ -22,6 +22,11 @@ public class MemberAppService {
 		return mapper.toInfoRes(model);
 	}
 
+	public MemberInfoRes getMemberByName(String memberName){
+		MemberInfoModel model = memberInfoService.getMemberByName(memberName);
+		return mapper.toInfoRes(model);
+	}
+
 	public void saveMember(CreateMemberReq req){
 		MemberInfoModel model = mapper.toModel(req);
 		memberInfoService.saveMember(model);

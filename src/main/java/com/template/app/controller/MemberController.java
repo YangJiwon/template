@@ -17,7 +17,7 @@ public class MemberController implements MemberControllerApi{
 	private final MemberAppService memberAppService;
 
 	public MemberInfoRes getMember(@RequestParam Integer memberNo){
-		return memberAppService.getMember(memberNo);
+		return memberAppService.find(memberNo);
 	}
 
 	public MemberInfoRes getMemberByName(@RequestParam String memberName){

@@ -2,7 +2,6 @@ package com.template.infrastructure.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
 import com.template.common.exception.BusinessErrorCodeException;
 import com.template.common.exception.ErrorCode;
@@ -22,16 +21,13 @@ public class MemberInfoService {
 	private final MemberInfoCustomRepository memberInfoCustomRepository;
 	private final MemberInfoMapper mapper;
 
-	public MemberInfoModel getMember(Integer memberNo){
-		MemberEntity entity = findById(memberNo);
+	public MemberInfoModel find(Integer memberNo){
+		MemberEntity entity = this.findById(memberNo);
 		return mapper.toInfoModel(entity);
 	}
 
-	public MemberInfoModel getMemberByName(String memberName){
-		MemberEntity entity = memberInfoCustomRepository.getMemberByName(memberName);
-		if (ObjectUtils.isEmpty(entity)){
-			throw new BusinessErrorCodeException(ErrorCode.MEMBER_01);
-		}
+	public MemberInfoModel findMemberByName(String memberName){
+		MemberEntity entity = memberRepository.findByMemberName(memberName);
 		return mapper.toInfoModel(entity);
 	}
 
@@ -50,7 +46,6 @@ public class MemberInfoService {
 		Integer memberNo = model.memberNo();
 		MemberEntity entity = this.findById(memberNo);
 
-		entity.setMemberName(model.memberName());
-		entity.setMemberEtcName(model.memberEtcName());
+		entity.changeName(model.memberName(), model.memberEtcName());
 	}
 }

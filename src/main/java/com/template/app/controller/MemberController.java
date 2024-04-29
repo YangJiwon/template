@@ -21,7 +21,7 @@ public class MemberController implements MemberControllerApi{
 	}
 
 	public MemberInfoRes findMemberByName(@RequestParam String memberName){
-		return memberAppService.getMemberByName(memberName);
+		return memberAppService.findMemberByName(memberName);
 	}
 
 	public void saveMember(@RequestBody CreateMemberReq req){

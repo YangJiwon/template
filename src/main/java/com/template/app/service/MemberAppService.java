@@ -25,7 +25,7 @@ public class MemberAppService {
 		return mapper.toInfoRes(model);
 	}
 
-	public MemberInfoRes getMemberByName(String memberName){
+	public MemberInfoRes findMemberByName(String memberName){
 		MemberInfoModel model = memberInfoService.findMemberByName(memberName);
 		if (ObjectUtils.isEmpty(model)){
 			throw new BusinessErrorCodeException(ErrorCode.MEMBER_01);

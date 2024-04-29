@@ -49,4 +49,10 @@ public class CommonExceptionHandler {
 		log.error("BusinessErrorCodeException Exception::{}::{}", exception.getErrorCode(), exception.getMessage());
 		return ApiErrorResponse.toResponse(exception.getErrorCode());
 	}
+
+	@ExceptionHandler({Exception.class})
+	public ResponseEntity<ApiErrorResponse> handleOtherException(Exception exception) {
+		log.error("Other Exception::{}", exception.getMessage());
+		return ApiErrorResponse.toResponse(exception.getMessage());
+	}
 }

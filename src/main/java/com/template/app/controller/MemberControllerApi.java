@@ -36,7 +36,7 @@ public interface MemberControllerApi {
 			}
 	)
 	@GetMapping("/member")
-	MemberInfoRes getMember(@Parameter(description = "멤버 넘버", example = "1", name = "memberNo")
+	MemberInfoRes findMember(@Parameter(description = "멤버 넘버", example = "1", name = "memberNo")
 							@RequestParam @Valid @NotNull @Min(1) Integer memberNo);
 
 	@Operation(
@@ -49,7 +49,7 @@ public interface MemberControllerApi {
 			}
 	)
 	@GetMapping("/member/name")
-	MemberInfoRes getMemberByName(@Parameter(description = "멤버 이름", example = "테스트", name = "memberName")
+	MemberInfoRes findMemberByName(@Parameter(description = "멤버 이름", example = "테스트", name = "memberName")
 								  @RequestParam @Valid @NotBlank String memberName);
 
 	@Operation(

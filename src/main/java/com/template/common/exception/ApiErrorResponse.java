@@ -10,9 +10,7 @@ import com.template.app.constants.DateTimePatternConstant;
 
 import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Getter;
 
-@Getter
 @Builder(access = AccessLevel.PRIVATE)
 public class ApiErrorResponse {
 	public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DateTimePatternConstant.YYYY_MM_DD_HH_MM_SS);
@@ -24,16 +22,21 @@ public class ApiErrorResponse {
 	private final String message;
 
 	public static ResponseEntity<ApiErrorResponse> toResponse(ErrorCode errorCode) {
+		HttpStatus status = errorCode.getHttpStatus();
 		ApiErrorResponse errorResponse = ApiErrorResponse.builder()
-				.status(errorCode.getHttpStatus().value())
-				.error(errorCode.getHttpStatus().name())
+				.status(status.value())
+				.error(status.name())
 				.code(errorCode.name())
 				.message(errorCode.getErrMsg())
 				.build();
 
 		return ResponseEntity
-				.status(errorCode.getHttpStatus())
+				.status(status)
 				.body(errorResponse);
+	}
+
+	public static ResponseEntity<ApiErrorResponse> toResponse(String msg) {
+		return toResponse(HttpStatus.INTERNAL_SERVER_ERROR, msg);
 	}
 
 	public static ResponseEntity<ApiErrorResponse> toResponse(HttpStatus status, String msg) {

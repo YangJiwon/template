@@ -16,11 +16,13 @@ import lombok.RequiredArgsConstructor;
 public class MemberController implements MemberControllerApi{
 	private final MemberAppService memberAppService;
 
-	public MemberInfoRes getMember(@RequestParam Integer memberNo){
+	public MemberInfoRes findMember(@RequestParam Integer memberNo){
 		return memberAppService.find(memberNo);
 	}
 
-	public MemberInfoRes getMemberByName(@RequestParam String memberName){
+	public MemberInfoRes findMemberByName(@RequestParam String memberName){
+		if(1==1)
+			throw new NullPointerException("test null");
 		return memberAppService.getMemberByName(memberName);
 	}
 

@@ -53,6 +53,6 @@ public class CommonExceptionHandler {
 	@ExceptionHandler({Exception.class})
 	public ResponseEntity<ApiErrorResponse> handleOtherException(Exception exception) {
 		log.error("Other Exception::{}", exception.getMessage());
-		return ApiErrorResponse.toResponse(exception.getMessage());
+		return ApiErrorResponse.toResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
 	}
 }

@@ -21,8 +21,6 @@ public class MemberController implements MemberControllerApi{
 	}
 
 	public MemberInfoRes findMemberByName(@RequestParam String memberName){
-		if(1==1)
-			throw new NullPointerException("test null");
 		return memberAppService.getMemberByName(memberName);
 	}
 
